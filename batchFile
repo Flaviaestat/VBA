@@ -1,0 +1,36 @@
+ On Error Resume Next
+     Set fso = CreateObject("Scripting.FileSystemObject")
+ On Error Resume Next
+     Defina a = fso.CreateTextFile("W:\Flávia\DBM\00 Mailings e Campanhas\Geração de Mailings com bases de Vendas\mybat.bat", True)
+
+	Dim Strg As String
+	Strg = Strg & "W:" & vbCrLf
+	Strg = Strg & "" & vbCrLf
+	Strg = Strg & "CD " & Caminho & vbCrLf
+	Strg = Strg & "" & vbCrLf
+	Strg = Strg & "copy *.* " & Chr(34) & "W:\Fl via\DBM\00 Mailings e Campanhas\Logs MailSender\" & Chr(34) & vbCrLf
+	Strg = Strg & "" & vbCrLf
+	Strg = Strg & "pause" & vbCrLf
+	a.WriteLine (Strg)
+ End Sub
+
+Shell("c: \ mybat.bat", vbNormalFocus)
+
+MsgBox "Arquivos Copiados"
+
+Kill ("c: \ mybat.bat")
+
+
+******************* Exemplo de arquivo bat ****************************
+
+
+copy "C:\DOCUME~1\FLAVIA~1.COS\CONFIG~1\Temp\spss.jnl" "W:\Fl via\DBM\00 Mailings e Campanhas\Gera‡Æo de Mailings com bases de Vendas\"
+
+cd W:\Fl via\DBM\00 Mailings e Campanhas\Gera‡Æo de Mailings com bases de Vendas\
+
+set TIMESTAMP=%DATE:~0,2%-%DATE:~3,2%
+
+rename spss.jnl  Output_Selecao_%TIMESTAMP%.txt
+
+
+vbCrLf
