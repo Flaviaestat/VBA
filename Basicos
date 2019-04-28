@@ -1,0 +1,89 @@
+'Arquivos Separados - pesquisar para diminuir o código'
+
+ChDir "W:\Isabel Castro\42 Macro do Leonardo"
+    
+
+
+   Workbooks.Open Filename:= "W:\Isabel Castro\42 Macro do Leonardo\MACRO Orçamento Duty Free.xls"
+    
+
+   Windows("Orçamento DF 2009.xls").Activate
+
+    Sheets("Venda").Range("F2:AK46").Select
+    Selection.Copy
+
+
+
+    Windows("MACRO Orçamento Duty Free.xls").Activate
+    Sheets("Venda").Range("F2:AK46").Select
+    Selection.PasteSpecial Paste:=xlPasteValues
+
+****************************************************************************
+
+'Colagem inserindo linha'
+
+
+Rows("11:13").Select
+Selection.Copy
+Selection.Insert Shift:=xlDown
+
+
+
+
+
+
+************************************************************************************************************
+
+'Arquivos Separados - com condicional na colagem'
+
+'DF Ano atual Dólar'
+     
+     Dim Col As Integer
+     Col = Cells(5, 9)
+     ChDir "Y:\ÁREA DE TRANSFERÊNCIA\Flávia Costa\38 Real x Orçado em Franco Suisso"
+    Workbooks.Open Filename:= _
+        "Y:\ÁREA DE TRANSFERÊNCIA\Flávia Costa\38 Real x Orçado em Franco Suisso\Actual x Budget - Net Sales - Duty Free.xls"
+
+    Windows("Apoio Net Sales - Categoria.xls").Activate
+    Sheets("Resumo Atual").Range("B4:B14").Select
+    Selection.Copy
+    Windows("Actual x Budget - Net Sales - Duty Free.xls").Activate
+    Sheets("2 - ApoioDF").Visible = True
+    Sheets("2 - ApoioDF").Select
+       
+    If Col = 1 Then
+    Range("B5:B15").PasteSpecial Paste:=xlPasteValues
+    End If
+    If Col = 2 Then
+    Range("C5:C15").PasteSpecial Paste:=xlPasteValues
+    End If
+    If Col = 3 Then
+    Range("D5:D15").PasteSpecial Paste:=xlPasteValues
+    End If
+    If Col = 4 Then
+    Range("E5:E15").PasteSpecial Paste:=xlPasteValues
+    End If
+    If Col = 5 Then
+    Range("F5:F15").PasteSpecial Paste:=xlPasteValues
+    End If
+    If Col = 6 Then
+    Range("G5:G15").PasteSpecial Paste:=xlPasteValues
+    End If
+    If Col = 7 Then
+    Range("H5:H15").PasteSpecial Paste:=xlPasteValues
+    End If
+    If Col = 8 Then
+    Range("I5:I15").PasteSpecial Paste:=xlPasteValues
+    End If
+    If Col = 9 Then
+    Range("J5:J15").PasteSpecial Paste:=xlPasteValues
+    End If
+    If Col = 10 Then
+    Range("K5:K15").PasteSpecial Paste:=xlPasteValues
+    End If
+    If Col = 11 Then
+    Range("L5:L15").PasteSpecial Paste:=xlPasteValues
+    End If
+    If Col = 12 Then
+    Range("M5:M15").PasteSpecial Paste:=xlPasteValues
+    End If
