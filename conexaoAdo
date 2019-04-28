@@ -1,0 +1,62 @@
+Sub Conex_ADO()
+
+
+'Ferramentas > Referências > Microsoft Active X data Objects 2.8
+
+
+Sheets("Base").activate
+Range("A:E").ClearContents
+
+'1 **** Criando conexões  *****
+Dim Conexão As ADODB.Connection
+Set Conexão = New ADODB.Connection
+
+Dim Parametros_Conexão As String
+Parametros_Conexão = "Server=RJD10;Password=RERAZO;User ID=RERAZO;Persist Security Info=True;Driver={Microsoft ODBC for Oracle}"
+Conexão.Open Parametros_Conexão
+
+'2 **** Definindo Query  *****
+String_SQL = "SELECT TIPODOCUMENTOPAX, NUMERODOCUMENTOPAX, "
+String_SQL = String_SQL & "SUM(NVL(precounitariovenda,0)* NVL(quantidadevendida,0)) AS VENDAS, "
+String_SQL = String_SQL & "COUNT(DISTINCT(NUMEROCHECKOUT||SEQUENCIALOPERACAOCHECKOUT||NUMERONOTAVENDA)) AS TRANS, "
+String_SQL = String_SQL & "SUM(nvl(QUANTIDADEVENDIDA, 0)) As QTD FROM "
+String_SQL = String_SQL & "(SELECT a.NUMERODOCUMENTOPAX, a.TIPODOCUMENTOPAX, a.NUMEROCHECKOUT, "
+String_SQL = String_SQL & "CASE WHEN A.CODIGOPAISPAX IN ('01','1') THEN 'BRASILEIROS' "
+String_SQL = String_SQL & "Else 'ESTRANGEIROS' "
+String_SQL = String_SQL & "END As NACIONALIDADE, "
+String_SQL = String_SQL & "a.SEQUENCIALOPERACAOCHECKOUT, a.NUMERONOTAVENDA, a.NUMEROVOOPAX, "
+String_SQL = String_SQL & "a.CODIGOBRASIF, a.PRECOUNITARIOVENDA, a.QUANTIDADEVENDIDA, "
+String_SQL = String_SQL & "b.CODIGOCATEGORIADUFRY , b.DESCRICAOITEM, b.IDENTIFICACAOMARCA "
+String_SQL = String_SQL & "from itvet001 a, itemt027 b "
+String_SQL = String_SQL & "where a.dataoperacaocheckout between to_date('01/01/2011', 'dd/mm/yyyy') and to_date('31/03/2011', 'dd/mm/yyyy') "
+String_SQL = String_SQL & "and a.codigonegocio = '200' and (b.codigobrasif(+)=a.codigobrasif and a.codigonegocio = b.codigonegocio(+)) "
+String_SQL = String_SQL & "and nvl(A.indicadorestorno, 'N')='N') "
+String_SQL = String_SQL & "Group BY TIPODOCUMENTOPAX, NUMERODOCUMENTOPAX "
+
+
+'3 **** Criando Recordsets  *****
+Dim rs As ADODB.Recordset
+Set rs = New ADODB.Recordset
+
+rs.Source = String_SQL
+rs.ActiveConnection = Conexão
+rs.Open
+
+Dim qt As QueryTable
+Set qt = Sheets("Base").QueryTables.Add(Connection:=rs, Destination:=Range("a1"))
+
+qt.Refresh
+
+If rs.State <> adStateClosed Then
+rs.Close
+End If
+
+
+If Not rs Is Nothing Then Set rs = Nothing
+If Not Conexão Is Nothing Then Set Conexão = Nothing
+
+
+MsgBox "Finalizado!"
+
+
+End Sub
