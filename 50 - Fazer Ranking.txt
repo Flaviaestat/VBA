@@ -1,0 +1,83 @@
+Sub consolidar()
+
+Sheets("Base").Activate
+Range("AO:AS").Select
+Selection.ClearContents
+
+    Columns("Y:Y").Select
+    Selection.Copy
+    Range("AO1").Select
+    Selection.PasteSpecial Paste:=xlPasteValues
+    Application.CutCopyMode = False
+    
+    ActiveSheet.Range("$AO:$AO").RemoveDuplicates Columns:=1, Header:=xlNo
+    Var1 = Range("AO65500").End(xlUp).Row
+    Range("AP1") = "Vendas"
+    Range("Ap2").FormulaR1C1 = "=SUMIF(C[-17],RC[-1],C[-16])"
+    Range("Ap2").Copy
+    Range("Ap3:Ap" & Var1).Select
+    Selection.PasteSpecial Paste:=xlFormulas
+    Application.CutCopyMode = False
+
+    
+    Columns("Ap:Ap").Select
+    Selection.Copy
+    Selection.PasteSpecial Paste:=xlPasteValues
+    Application.CutCopyMode = False
+ 
+    
+ 
+    ActiveWorkbook.Worksheets("Base").Sort.SortFields.Clear
+    ActiveWorkbook.Worksheets("Base").Sort.SortFields.Add Key:=Range("AP:AP") _
+        , SortOn:=xlSortOnValues, Order:=xlDescending, DataOption:=xlSortNormal
+    With ActiveWorkbook.Worksheets("Base").Sort
+        .SetRange Range("AO:AP")
+        .Header = xlYes
+        .MatchCase = False
+        .Orientation = xlTopToBottom
+        .SortMethod = xlPinYin
+        .Apply
+    End With
+    
+    
+    
+    
+    Columns("ai:ai").Select
+    Selection.Copy
+    Range("Ar1").Select
+    Selection.PasteSpecial Paste:=xlPasteValues
+    Application.CutCopyMode = False
+    
+    ActiveSheet.Range("$Ar:$Ar").RemoveDuplicates Columns:=1, Header:=xlNo
+    Var2 = Range("Ar65500").End(xlUp).Row
+   
+    Range("As1") = "Vendas"
+    Range("As2").FormulaR1C1 = "=SUMIF(C35,RC44,C36)"
+    Range("As2").Copy
+       
+    Range("As3:As" & Var2).PasteSpecial Paste:=xlFormulas
+    
+ 
+    Columns("As:As").Select
+    Selection.Copy
+    Selection.PasteSpecial Paste:=xlPasteValues
+    Application.CutCopyMode = False
+    Range("Ar1").Select
+    
+    
+ 
+    ActiveWorkbook.Worksheets("Base").Sort.SortFields.Clear
+    ActiveWorkbook.Worksheets("Base").Sort.SortFields.Add Key:=Range("As:As") _
+        , SortOn:=xlSortOnValues, Order:=xlDescending, DataOption:=xlSortNormal
+    With ActiveWorkbook.Worksheets("Base").Sort
+        .SetRange Range("Ar:As")
+        .Header = xlYes
+        .MatchCase = False
+        .Orientation = xlTopToBottom
+        .SortMethod = xlPinYin
+        .Apply
+    End With
+    
+    
+
+End Sub

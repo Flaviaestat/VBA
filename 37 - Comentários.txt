@@ -1,0 +1,10 @@
+Sub Adicionar_comentario()
+
+Selection.Font.ColorIndex = 3
+Selection.Font.Bold = True
+ 
+Selection.ClearComments ’seleciona e deleta o comentário para evitar um possível : erreur
+ 
+ActiveCell.AddComment
+ActiveCell.Comment.Text Text:=”XL-Eves®:” & Chr(10) & “Verificar o pagamento!”
+End Sub

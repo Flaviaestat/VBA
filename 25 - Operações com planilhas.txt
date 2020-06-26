@@ -1,0 +1,9 @@
+'Seleciona várias planilhas'
+
+    Sheets(Array("CAPA", "Metodologia", "Total", "AISP", "Loja 9", "Loja 2", "Loja 44", _
+        "Loja 70", "Outras AISP", "AIRJ")).Select
+    
+
+'Andar planilhas'
+
+    ActiveWindow.ScrollWorkbookTabs Sheets:=1

@@ -1,0 +1,18 @@
+
+    
+    ActiveWorkbook.ChangeLink Name:= _
+        "Z:\Orçamentos\Orçamentos enviados para as lojas\2009\08_2009\Orçamento Diário Dufry Shopping -Agosto09.xls" _
+        , NewName:= _
+        "Z:\Orçamentos\Orçamentos enviados para as lojas\2009\09_2009\Orçamento diário Duty Free - Setembro09.xls" _
+        , Type:=xlExcelLinks
+
+
+    Workbooks.Open Filename:= _
+        "W:\Flávia\Relatório Diário\2009\Dufry Brazil Daily Sales 2009 Net Sales - Fórmulas.xls" _
+        , UpdateLinks:=0
+
+
+    ActiveWorkbook.BreakLink Name:= _
+        "W:\Orçamentos\2010\Commercial Files\Envio Gross Financeiro\Apoio Orçamento DF Original BACKUP Falta 11%.xls" _
+        , Type:=xlExcelLinks
+

@@ -1,0 +1,9 @@
+Sub aux()
+'
+' aux Macro
+'
+
+'
+    Range("I12:K13,I100:K108").Select
+    Range("I100").Activate
+End Sub

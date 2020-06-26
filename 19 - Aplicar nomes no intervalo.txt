@@ -1,0 +1,10 @@
+Sub Aplica_Nomes()
+
+ Range("B1:B13").Select
+    ActiveWorkbook.Names.Add Name:="AIRJ", RefersTo:="='Apoio Combos'!B1:B13"
+    
+
+    
+
+
+End Sub

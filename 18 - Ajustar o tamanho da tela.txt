@@ -1,0 +1,8 @@
+Sub SetZoom()
+Dim r as Range
+Application.WindowState = xlMaximized
+set r = Selection
+Range("A1:Z30").Select
+ActiveWindow.Zoom = True
+r.Select
+End sub

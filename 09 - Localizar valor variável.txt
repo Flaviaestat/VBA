@@ -1,0 +1,15 @@
+'Localizando último registro e guardando seu valor como variável'
+
+Range("A1").Select
+Selection.End(xlDown).Select
+Ultimadata = Selection.Value
+ 
+Worksheets("Cotação").Activate
+Range("A1").Select
+Cells.Find(What:=Ultimadata, After:=ActiveCell, LookIn:=xlFormulas, _
+LookAt:=xlPart, SearchOrder:=xlByRows, SearchDirection:=xlNext, _
+MatchCase:=False, SearchFormat:=False).Select
+
+/*substituir*/
+
+    Selection.Replace What:="", Replacement:="DF", LookAt:=xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, ReplaceFormat:=False

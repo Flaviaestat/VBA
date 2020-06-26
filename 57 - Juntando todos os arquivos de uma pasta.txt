@@ -1,0 +1,47 @@
+Sub ImportarPlan1()
+    
+    mes = UserForm1.TextBox1.Value
+    pastas = UserForm1.TextBox2.Value
+    
+    
+    Dim mes2 As String
+        
+    If mes < 10 Then
+    mes2 = "0" & Right(mes, 1)
+    ElseIf mes >= 10 Then
+    mes2 = mes
+    End If
+    
+    Dim Pasta As String
+    Dim Arquivo As String
+    
+    Plan_act = ActiveWorkbook.Name
+    
+    
+    For i = 1 To pastas
+        Pasta = "W:\02 - DataBase Marketing\02 - Mailings e Campanhas\Bases\Base Site\Cadastros Site\2012-" & mes2 & "\Envio " & i & "\"
+        Arquivo = Dir(Pasta & "*.csv")
+     
+    
+    Do
+        Workbooks.Open Pasta & Arquivo
+        ActiveSheet.Range("a1").Select
+        Range(Selection, Selection.End(xlToRight)).Select
+        Range(Selection, Selection.End(xlDown)).Select
+        Selection.Copy
+        Windows(Plan_act).Activate
+        Range("a1").End(xlDown).Offset(1, 0).Select
+        Selection.PasteSpecial Paste:=xlPasteValues
+        
+        Application.DisplayAlerts = False
+        Workbooks(Arquivo).Close savechanges:=False
+        Arquivo = Dir
+    
+        
+    Loop While Arquivo <> ""
+    
+    Next i
+    
+  UserForm1.Hide
+    
+End Sub

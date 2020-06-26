@@ -1,0 +1,248 @@
+Sub GoPower()
+     
+' Declaração das variáveis:
+    Dim pptApp As PowerPoint.Application
+    Dim Pres1 As PowerPoint.Presentation
+    Dim PPSlide As PowerPoint.Slide
+    Dim firstSlide As Object
+    Dim secondSlide As Object
+    Dim thirdSlide As Object
+    Dim fourthSlide As Object
+    Dim fifthSlide As Object
+    Dim sixthSlide As Object
+    Dim SlideNum As Integer
+    Dim TotSlides As Integer
+    Dim file As String
+    Dim Acct As String
+    Dim Comparison As String
+    Dim PresentDate As String
+
+
+' Obtendo as variáveis necessárias para o MS Excel.
+    Acct = Worksheets("Input").Range("g4").Value
+    PresentDate = Worksheets("Input").Range("g5").Value
+    If Worksheets("Input").Range("g3").Value = "Current" Then
+        Comparison = "Instrument 1 vs. " & Worksheets("Input").Range("g3").Value & "Instrument"
+        Else
+        Comparison = "Instrument 1 vs. " & Worksheets("Input").Range("g3").Value
+    End If
+    
+' Definindo o caminho antes de abrir o nosso modelo (Template).
+
+    Let file = ThisWorkbook.Path & "\Sistema de Posicionamento Bernardes - v1.1.ppt"
+    
+' Iniciamos usando "CreateObject " para instanciar a aplicação PowerPoint.
+    Set pptApp = CreateObject("PowerPoint.Application")
+    
+' Maximizamos a janela do MS Powerpoint e abrimos o nosso modelo.
+    With pptApp
+        Let .Visible = True
+        Let .WindowState = 3
+        Set Pres1 = pptApp.Presentations.Open(file)
+    End With
+    
+' ******************************************SLIDE TITULAR*******************************************
+
+    With Pres1.TitleMaster
+        Let .Shapes("Text Box 9").TextFrame.TextRange.Text = Acct
+        Let .Shapes("Text Box 10").TextFrame.TextRange.Text = Comparison
+        Let .Shapes("Text Box 11").TextFrame.TextRange.Text = PresentDate
+    End With
+    
+' ******************************************SLIDE 1**************************************************
+    
+    Worksheets("InstComp").Range("A1:F21").CopyPicture Appearance:=xlScreen, Format:=xlBitmap
+    pptApp.ActiveWindow.View.GotoSlide Index:=2
+    
+    Set firstSlide = pptApp.ActiveWindow.View.Slide
+    firstSlide.Shapes.Paste.Select
+
+    With pptApp.ActiveWindow.Selection.ShapeRange
+        .Align msoAlignCenters, True
+        .Align msoAlignMiddles, True
+        .IncrementTop 24#
+    End With
+
+    With firstSlide
+        Let .Shapes(1).TextFrame.TextRange.Text = Acct & " - " & Comparison
+    End With
+
+' ******************************************SLIDE 2*************************************************
+    
+    Worksheets("WFComp").Range("B1:L24").CopyPicture Appearance:=xlScreen, Format:=xlBitmap
+    pptApp.ActiveWindow.View.GotoSlide Index:=3
+    
+    Set secondSlide = pptApp.ActiveWindow.View.Slide
+    secondSlide.Shapes.Paste.Select
+
+    With pptApp.ActiveWindow.Selection.ShapeRange
+        Let .Height = 225.25
+        Let .Width = 716.88
+
+        .Align msoAlignCenters, True
+        .Align msoAlignMiddles, True
+        .IncrementTop 24#
+    End With
+    
+    With secondSlide
+        Let .Shapes(1).TextFrame.TextRange.Text = Acct & " - " & Comparison
+    End With
+    
+' ******************************************SLIDE 3*************************************************
+    
+    Worksheets("ABC").Range("A1:K46").CopyPicture Appearance:=xlScreen, Format:=xlBitmap
+    pptApp.ActiveWindow.View.GotoSlide Index:=4
+    
+    Set thirdSlide = pptApp.ActiveWindow.View.Slide
+    thirdSlide.Shapes.Paste.Select
+
+    With pptApp.ActiveWindow.Selection.ShapeRange
+        Let .Height = 341.12
+        Let .Width = 661.5
+
+        .Align msoAlignCenters, True
+        .Align msoAlignMiddles, True
+        .IncrementTop 24#
+    End With
+    
+    With thirdSlide
+        Let .Shapes(1).TextFrame.TextRange.Text = Acct & " - " & Comparison
+    End With
+    
+' ******************************************SLIDE 4*************************************************
+    
+    Worksheets("LTCC").Range("B2:N26").CopyPicture Appearance:=xlScreen, Format:=xlBitmap
+    pptApp.ActiveWindow.View.GotoSlide Index:=5
+    
+    Set fourthSlide = pptApp.ActiveWindow.View.Slide
+    fourthSlide.Shapes.Paste.Select
+
+    With pptApp.ActiveWindow.Selection.ShapeRange
+        .Align msoAlignCenters, True
+        .Align msoAlignMiddles, True
+        .IncrementTop 24#
+    End With
+    
+    With fourthSlide
+        Let .Shapes(1).TextFrame.TextRange.Text = Acct & " - " & Comparison
+    End With
+    
+' ******************************************SLIDE 5*************************************************
+    
+    If Sheets("Input").Range("G3").Value = "Other" Then
+        pptApp.ActiveWindow.View.GotoSlide Index:=6
+        pptApp.ActiveWindow.Selection.SlideRange.Delete
+    Else
+        'if comparison with main instrument
+        Worksheets("Growth").Range("B2:N22").CopyPicture Appearance:=xlScreen, Format:=xlBitmap
+        pptApp.ActiveWindow.View.GotoSlide Index:=6
+        
+        Set fifthSlide = pptApp.ActiveWindow.View.Slide
+        fifthSlide.Shapes.Paste.Select
+
+        With pptApp.ActiveWindow.Selection.ShapeRange
+            .Align msoAlignCenters, True
+            .Align msoAlignMiddles, True
+            .IncrementTop 24#
+        End With
+        
+        With fifthSlide
+            Let .Shapes(1).TextFrame.TextRange.Text = Acct & " - " & Comparison
+        End With
+    End If
+    
+' ******************************************SLIDE 6*************************************************
+    
+    If Sheets("Input").Range("G3").Value = "Other" Then
+        pptApp.ActiveWindow.View.GotoSlide Index:=6
+        pptApp.ActiveWindow.Selection.SlideRange.Delete
+    Else
+        If Sheets("Input").Range("p5").Value = 1 And Sheets("Input").Range("p17").Value = 1 Then
+            Worksheets("Layout").Range("A1:R28").CopyPicture Appearance:=xlScreen, Format:=xlBitmap
+            pptApp.ActiveWindow.View.GotoSlide Index:=7
+            
+            Set sixthSlide = pptApp.ActiveWindow.View.Slide
+            sixthSlide.Shapes.Paste.Select
+
+            With pptApp.ActiveWindow.Selection.ShapeRange
+                Let .Height = 298#
+                Let .Width = 661.5
+                .Align msoAlignCenters, True
+                .Align msoAlignMiddles, True
+                .IncrementTop 24#
+            End With
+            
+            With sixthSlide
+                Let .Shapes(1).TextFrame.TextRange.Text = Acct & " - " & Comparison
+            End With
+        End If
+        
+        'Instrument 1 and more than 1 main instrument
+        If Sheets("Input").Range("p5").Value = 1 And Sheets("Input").Range("p17").Value > 1 Then
+            Worksheets("Layout1-2").Range("A1:O30").CopyPicture Appearance:=xlScreen, Format:=xlBitmap
+            pptApp.ActiveWindow.View.GotoSlide Index:=7
+            
+            Set sixthSlide = pptApp.ActiveWindow.View.Slide
+            sixthSlide.Shapes.Paste.Select
+
+            With pptApp.ActiveWindow.Selection.ShapeRange
+                Let .Height = 345.5
+                Let .Width = 575.12
+
+                .Align msoAlignCenters, True
+                .Align msoAlignMiddles, True
+                .IncrementTop 24#
+            End With
+            
+            With sixthSlide
+                Let .Shapes(1).TextFrame.TextRange.Text = Acct & " - " & Comparison
+            End With
+        End If
+        
+        If Sheets("Input").Range("p5").Value > 1 And Sheets("Input").Range("p17").Value = 1 Then
+            Worksheets("Layout2-1").Range("A1:O29").CopyPicture Appearance:=xlScreen, Format:=xlBitmap
+            pptApp.ActiveWindow.View.GotoSlide Index:=7
+            
+            Set sixthSlide = pptApp.ActiveWindow.View.Slide
+            sixthSlide.Shapes.Paste.Select
+
+            With pptApp.ActiveWindow.Selection.ShapeRange
+                Let .Height = 345.5
+                Let .Width = 574.38
+
+                .Align msoAlignCenters, True
+                .Align msoAlignMiddles, True
+                .IncrementTop 24#
+            End With
+            
+            With sixthSlide
+                .Shapes(1).TextFrame.TextRange.Text = Acct & " - " & Comparison
+            End With
+        End If
+        
+        If Sheets("Input").Range("p5").Value > 1 And Sheets("Input").Range("p17").Value > 1 Then
+            Worksheets("Layout2-2").Range("A1:O30").CopyPicture Appearance:=xlScreen, Format:=xlBitmap
+            pptApp.ActiveWindow.View.GotoSlide Index:=7
+            
+            Set sixthSlide = pptApp.ActiveWindow.View.Slide
+            sixthSlide.Shapes.Paste.Select
+
+            With pptApp.ActiveWindow.Selection.ShapeRange
+                Let '.Height = 345.5
+                Let '.Width = 573.62
+
+                .Align msoAlignCenters, True
+                .Align msoAlignMiddles, True
+                .IncrementTop 24#
+            End With
+            
+            With sixthSlide
+                .Shapes(1).TextFrame.TextRange.Text = Acct & " - " & Comparison
+            End With
+        End If
+    End If  
+
+Unload WaitExport
+
+Pres1.SlideShowSettings.Run
+End Sub

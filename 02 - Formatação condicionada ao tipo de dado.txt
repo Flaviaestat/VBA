@@ -1,0 +1,96 @@
+Sub Format2()
+
+    Dim Tipo As Integer
+    
+    Tipo = Cells(6, 12)
+    
+    If Tipo = 1 Then
+    Range("I7:K40").Select
+    Selection.NumberFormat = "0.0%"
+    Cells(1, 1).Select
+    End If
+    
+    If Tipo = 2 Then
+    Range("I7:K40").Select
+    Selection.NumberFormat = "#,##0"
+    Cells(5, 1).Select
+    End If
+
+End Sub
+
+
+
+
+Sub Format3()
+
+    Dim Tipo As Integer
+    
+    Tipo = Cells(6, 12)
+    
+    If Tipo = 1 Then
+    Range("I7:K40").Select
+    Selection.NumberFormat = "0.0%"
+    Range("M7:O19").Select
+    Selection.NumberFormat = "0.0%"
+     Cells(1, 1).Select
+     End If
+    
+    If Tipo = 2 Then
+    Range("I7:K40").Select
+    Selection.NumberFormat = "0.0%"
+    Range("M7:O19").Select
+    Selection.NumberFormat = "0.0%"
+     Cells(1, 1).Select
+    End If
+    
+    If Tipo = 3 Then
+    Range("I7:K40").Select
+    Selection.NumberFormat = "0.0"
+     Range("M7:O19").Select
+    Selection.NumberFormat = "0.0%"
+         Cells(5, 1).Select
+    End If
+    
+    If Tipo = 4 Then
+    Range("I7:K40").Select
+    Selection.NumberFormat = "0.0%"
+    Range("M7:O19").Select
+    Selection.NumberFormat = "0.0%"
+        Cells(5, 1).Select
+    End If
+
+
+    If Tipo = 5 Then
+    Range("I7:K40").Select
+    Selection.NumberFormat = "#,##0"
+    Range("M7:O19").Select
+    Selection.NumberFormat = "0.0%"
+         Cells(5, 1).Select
+    End If
+
+    If Tipo = 6 Then
+    Range("I7:K40").Select
+    Selection.NumberFormat = "#,##0"
+    Range("M7:O19").Select
+    Selection.NumberFormat = "0.0%"
+         Cells(5, 1).Select
+    End If
+
+    If Tipo = 7 Then
+    Range("I7:K40").Select
+    Selection.NumberFormat = "#,##0"
+    Range("M7:O19").Select
+    Selection.NumberFormat = "0.0%"
+          Cells(5, 1).Select
+    End If
+
+
+    If Tipo = 8 Then
+    Range("I7:K40").Select
+    Selection.NumberFormat = "0.0%"
+    Range("M7:O19").Select
+    Selection.NumberFormat = "0.0%"
+         Cells(5, 1).Select
+    End If
+
+End Sub

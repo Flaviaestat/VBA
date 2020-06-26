@@ -1,0 +1,11 @@
+'Selecionando a ultima celula'
+ 
+ Selection.End(xlDown)
+
+
+
+'Selecionando Intervalo usando o Ctrl End'
+
+    Range("F605").Select
+    Range(Selection, Selection.End(xlDown)).Select    'para baixo'
+    Range(Selection, Selection.End(xlToRight)).Select  'Direita'

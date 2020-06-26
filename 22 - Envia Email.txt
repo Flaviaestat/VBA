@@ -1,0 +1,17 @@
+With
+ActiveWorkbook .SendMail Recipients:="dump@ozgrid.com", _ Subject:="Try Me " & Format(Date, "dd/mmm/yy") .Close SaveChanges:=False
+End With
+
+Sub RouteActiveWorkbook()
+    With ActiveWorkbook
+       .HasRoutingSlip = True
+           With .RoutingSlip
+                .Delivery = xlOneAfterAnother
+                .Recipients = Array("dump@ozgrid.com", _
+                    "ok@ozgrid.com", "zach@ozgrid.com")
+                .Subject = "Check This Out"
+                .Message = "Please fill in the Workbook and send it on."
+          End With
+        .Route
+    End With
+End Sub

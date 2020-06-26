@@ -1,0 +1,46 @@
+Sub Teste2()
+  
+   
+    'Criando conexão com a query'
+    Dim Data1 As String
+    Dim Data2 As String
+    
+    Worksheets("Controle").Activate
+    Data1 = Range("A1").Value 'Data Início Ano atual'
+    Data2 = Range("A2").Value 'Data Fim Ano Atual'
+
+    
+    Worksheets("Conexão").Activate
+    Range("A1:E9").Select
+    Selection.ClearContents    
+   
+ 
+   With ActiveSheet.ListObjects.Add(SourceType:=0, Source:= _
+        "ODBC;DSN=RJD10;UID=RERAZO;PWD=RERAZO;DBQ=RJD10;ASY=OFF;", Destination:=Range("$A$1")). _
+        QueryTable
+        .CommandText = Array(      )
+        .CommandType = xlCmdSql
+        .RowNumbers = False
+        .FillAdjacentFormulas = False
+        .PreserveFormatting = True
+        .RefreshOnFileOpen = False
+        .BackgroundQuery = True
+        .RefreshStyle = xlInsertDeleteCells
+        .SavePassword = False
+        .SaveData = True
+        .AdjustColumnWidth = True
+        .RefreshPeriod = 0
+        .PreserveColumnInfo = True
+	.Refresh BackgroundQuery:=False
+        .ListObject.DisplayName = "Tabela_Consulta_de_RJD10"
+        End With
+
+ActiveWorkbook.Connections("Conexão").Refresh
+
+
+MsgBox "Dados Atualizados!!"
+
+
+
+
+End Sub

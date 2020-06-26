@@ -1,0 +1,24 @@
+Sub Filtro()
+
+Application.ScreenUpdating = False
+Dim Criterio1, Base_Cat As Range
+
+Set Criterio1 = Sheets("Apoio Combos").Range("A62:D63")
+
+Plan_act = ActiveSheet.Name
+
+Sheets("BASE CAT").Activate
+Range("N:Y").ClearContents
+Range("A1").Select
+Ultima = Range("A65536").End(xlUp).Row
+Set Base_Cat = Range("A1:L" & Ultima)
+
+Base_Cat.AdvancedFilter Action:=xlFilterCopy, CopyToRange:=Range("N1"), CriteriaRange:=Criterio1
+
+Sheets(Plan_act).Activate
+Range("A1").Select
+
+Application.ScreenUpdating = True
+
+
+End Sub

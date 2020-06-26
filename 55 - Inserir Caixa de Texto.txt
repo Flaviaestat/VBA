@@ -1,0 +1,10 @@
+'Left    Required Single. The position, measured in points, of the left edge of the text box.
+'Top    Required Single. The position, measured in points, of the top edge of the text box.
+'Width    Required Single. The width, measured in points, of the text box.
+'Height    Required Single. The height, measured in points, of the text box.
+
+Set wsActive = ActiveSheet
+
+Range("D4").Select
+Set box = wsActive.Shapes.AddTextbox(msoTextOrientationHorizontal, 500, 50, 200, 100)
+box.TextFrame.Characters.Text = "Para somar valores à coluna 'Actual', digite os números na coluna C ('Valores a somar'). Porém se quiser substituir os valores de 'Actual' digite na coluna D ('Substituição')."

@@ -1,0 +1,13 @@
+Columns("A:G").Select
+    ActiveWorkbook.Worksheets("1 - Base").Sort.SortFields.Clear
+    ActiveWorkbook.Worksheets("1 - Base").Sort.SortFields.Add Key:=Range( _
+        "B2:B6645"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
+        xlSortNormal
+    With ActiveWorkbook.Worksheets("1 - Base").Sort
+        .SetRange Range("A1:G6645")
+        .Header = xlYes
+        .MatchCase = False
+        .Orientation = xlTopToBottom
+        .SortMethod = xlPinYin
+        .Apply
+    End With

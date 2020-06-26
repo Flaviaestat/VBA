@@ -1,0 +1,42 @@
+'******************  Para bases pequenas
+
+
+Ultima = Range("a1").End(xlDown).Row
+
+Dim Linha As Range
+For Each Linha In Range("a1:a" & Ultima)
+Linha.Offset(0, -6).Select
+Range(Selection, Selection.Offset(0, 3)).Select
+Selection.Copy
+Sheets("Apoio Combos").Activate
+Range("A68:D68").Select
+Selection.PasteSpecial Paste:=xlPasteValues
+Application.CutCopyMode = False
+
+Sheets("Principal").Activate
+Linha.Value = Application.WorksheetFunction.DSum(Worksheets("Notas Total").Range("J:P"), Worksheets("Notas Total").Range("P1"), Worksheets("Apoio Combos").Range("A67:D68"))
+Linha.Offset(0, 1).Value = Application.WorksheetFunction.DSum(Worksheets("Notas Total").Range("J:P"), Worksheets("Notas Total").Range("P1"), Worksheets("Apoio Combos").Range("A75:E76"))
+Linha.Offset(0, 3).Value = Application.WorksheetFunction.DSum(Worksheets("Notas Não Refeitas").Range("J:O"), Worksheets("Notas Não Refeitas").Range("O1"), Worksheets("Apoio Combos").Range("A67:D68"))
+
+On Error Resume Next
+Linha.Offset(0, -2).Value = Application.WorksheetFunction.VLookup((Linha.Offset(0, -6).Value & Linha.Offset(0, -5).Value), Worksheets("Base Funct").Range("J:L"), 2, 0)
+Linha.Offset(0, -1).Value = Application.WorksheetFunction.VLookup((Linha.Offset(0, -6).Value & Linha.Offset(0, -5).Value), Worksheets("Base Funct").Range("J:L"), 3, 0)
+
+Linha.Offset(0, 2).Value = Linha.Offset(0, 1).Value / Linha.Value
+Linha.Offset(0, 4).Value = Linha.Offset(0, 3).Value / Linha.Offset(0, 1).Value
+
+Next Linha
+
+
+'*****************  Para bases grandes
+
+Sheets("BASE CAT").Activate
+Ultima = Range("a1").End(xlDown).Row
+
+Range("A1") = "=(O2&P2&Q2&U2)"
+Range("A1").Copy
+Range("A2:A" & Ultima).Select
+Selection.PasteSpecial Paste:=xlPasteFormulas
+Application.CutCopyMode = False
+Range("A1").Select
+

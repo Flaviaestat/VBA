@@ -1,0 +1,29 @@
+Sub Atualiza()
+    
+    Mes = Range("c1").Value
+    Workbooks.Open Filename:="W:\Relatório Semanal\2009\" & Mes & "_2009\Apoios\vendaDFGrp.xls"
+
+    Worksheets("VendaMes").Activate
+    
+      
+      
+    Dim oCell As Range
+        
+    For Each oCell In Range("C8:IP8")
+    Título = oCell.Value
+    If Título = "Vendas" And oCell.Offset(1, 0) = 0 Then
+    Range(oCell, oCell.Offset(0, 4)).Select
+    Selection.EntireColumn.Delete
+    End If
+    Next oCell
+    
+    Range("A25:A26").Select
+    Selection.EntireRow.Delete
+    
+    Range("A36").Select
+    Selection.EntireRow.Delete
+    
+   Range("A41").Select
+   Selection.EntireRow.Delete
+    
+End Sub

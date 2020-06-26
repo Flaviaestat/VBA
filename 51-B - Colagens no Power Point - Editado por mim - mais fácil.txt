@@ -1,0 +1,38 @@
+Sub teste()
+
+'Referência de onde se quer copiar (no Excel)
+Meu_Arq = ThisWorkbook.Name
+Workbooks(Meu_Arq).Worksheets("Principal").Range("B7:E13").CopyPicture Appearance:=xlScreen, Format:=xlBitmap
+
+
+'Cria a varivavel de conexao do Excel com o Powerpoint
+Dim pptApp As PowerPoint.Application
+Dim firstSlide As Object
+
+
+'Abre a conexao com o powerpoint
+Set pptApp = CreateObject("PowerPoint.Application")
+
+'Faz com o que o arquivo de Power Point possa ser aberto
+pptApp.Visible = True
+
+'Abre o arquivo em power point
+pptApp.Presentations.Open Filename:=("W:\Flávia\DBM\00 Mailings e Campanhas\Bases\Bases de Cadastro\PROGRAMAS RELATÓRIO\Estudos & Informações Solicitadas\Apresentação_Teste.ppt")
+pptApp.ActiveWindow.View.GotoSlide Index:=1
+
+'Selecionando pra colar
+Set firstSlide = pptApp.ActiveWindow.View.Slide
+firstSlide.Shapes.Paste.Select
+
+
+'Alinhando pra figura ficar centralizada
+    With pptApp.ActiveWindow.Selection.ShapeRange
+        .Align msoAlignCenters, True
+        .Align msoAlignMiddles, True
+        .IncrementTop 24#
+    End With
+
+
+
+    
+End Sub

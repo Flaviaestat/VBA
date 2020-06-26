@@ -1,0 +1,20 @@
+Sub Links()
+
+
+Dim Wkb As Excel.Workbook
+Set Wkb = ActiveWorkbook
+
+
+Dim arrayLinks As Variant
+aLinks = Wkb.LinkSources(xlExcelLinks)
+
+For i = 1 To UBound(aLinks)
+
+Sheets("Resumo Conf").Activate
+
+Range("b1" & i).Value = aLinks(i)
+
+Next i
+
+
+End Sub

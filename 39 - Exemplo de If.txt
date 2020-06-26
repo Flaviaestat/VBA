@@ -1,0 +1,19 @@
+   If Range("F32").Value = 1 Then
+    Rows("58:68").Select
+    Selection.EntireRow.Hidden = False
+    ElseIf Range("F32").Value = 2 Then
+    Rows("69:79").Select
+    Selection.EntireRow.Hidden = False
+    ElseIf Range("F32").Value = 3 Then
+    Rows("80:90").Select
+    Selection.EntireRow.Hidden = False
+    ElseIf Range("F32").Value = 4 Then
+    Rows("36:46").Select
+    Selection.EntireRow.Hidden = False
+    ElseIf Range("F32").Value = 5 Then
+    Rows("47:57").Select
+    Selection.EntireRow.Hidden = False
+    ElseIf Range("F32").Value = 6 Then
+    Rows("91:101").Select
+    Selection.EntireRow.Hidden = False
+    End If

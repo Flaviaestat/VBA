@@ -1,0 +1,32 @@
+Sub Transpor()
+
+'Alterar nome da plan para Principal e tirar os outros elementos'
+
+    Sheets("Principal").Activate
+    
+    Dim Intervalo_Transp As Range
+
+    'Intervalo_Transp = Range("A1").Value'
+    
+    Dim Célula As Range
+
+    For Each Célula In Range("c10:am21")
+    Sheets("Principal").Activate
+    Mês = Célula.End(xlToLeft).Value
+    Loja = Célula.End(xlUp).Value
+    Célula.Copy
+    
+Sheets("Base").Activate
+Range("a1").Select
+Selection.End(xlDown).Select
+Selection.Offset(1, 0).Select
+Selection.PasteSpecial Paste:=xlPasteValues
+Selection.Offset(0, 1).Select
+    Selection.Replace What:="", Replacement:=Mês, LookAt:=xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, ReplaceFormat:=False
+    Selection.Offset(0, 1).Select
+    Selection.Replace What:="", Replacement:=Loja, LookAt:=xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, ReplaceFormat:=False
+    Application.CutCopyMode = False
+
+    Next Célula
+
+End Sub

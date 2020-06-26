@@ -1,0 +1,24 @@
+
+'Solver
+
+
+
+	SPT1 = Range("C37").Value
+
+
+        SolverReset
+        SolverOk SetCell:="$N$34", MaxMinVal:=3, ValueOf:=SPT1, ByChange:="$I$3:$I$33"
+        
+	'Restrições
+	SolverAdd CellRef:="$I$37", Relation:=3, FormulaText:="$C$42"
+        SolverAdd CellRef:="$I$36", Relation:=1, FormulaText:="$C$41"
+        SolverSolve
+
+'Valueof - valor que se quer atingir (no exemplo está guardada como variável)
+
+'Relações MaxMinVal
+' 1 -> <=
+' 2 -> =
+' 3 -> >=
+' 4 -> num
+' 5 -> bin

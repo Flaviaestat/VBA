@@ -1,0 +1,26 @@
+*********** NÃO DEIXA UTILIZAR CASES ***************
+
+Sub teste()
+  Workbooks("Forma de Pagamento DF 2009.xls").Activate
+    Sheets("Conexão2").Activate
+    
+      With ActiveSheet.ListObjects.Add(SourceType:=0, Source:= _
+        "ODBC;DSN=Arquivos do Excel;DBQ=Y:\ÁREA DE TRANSFERÊNCIA\Flávia Costa\24 Resumo de Parcelamento\Bases\Base Apoio.XLS;", Destination:=Range("$A$1")).QueryTable
+        .CommandText = Array( _
+        "SELECT `Conexão$`.TIPOLOJA,`Conexão$`.VENDA_LÍQUIDA FROM `Conexão$` `Conexão$` " _
+        )
+        .CommandType = xlCmdSql
+        .RowNumbers = False
+        .FillAdjacentFormulas = False
+        .PreserveFormatting = True
+        .RefreshOnFileOpen = False
+        .BackgroundQuery = True
+        .RefreshStyle = xlInsertDeleteCells
+        .SavePassword = False
+        .SaveData = True
+        .AdjustColumnWidth = True
+        .RefreshPeriod = 0
+        .PreserveColumnInfo = True
+        .ListObject.DisplayName = "Tabela_Base"
+        End With
+    End Sub

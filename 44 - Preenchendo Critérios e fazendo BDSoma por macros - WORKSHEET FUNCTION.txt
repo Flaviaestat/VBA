@@ -1,0 +1,38 @@
+'Começando as fórmulas
+
+'AISP Dep linha 9
+
+Sheets("Apoio Combos").Activate
+Range("B31").Value = "AISP"
+Range("C31").Value = "A DEPARTURE"
+Range("A33").Value = "9"
+Celula = Range("C33").Value
+
+Sheets("ActSales").Activate
+Range(Celula).Value = Application.WorksheetFunction.DSum(Worksheets("Base Atual").Range("A:G"), Worksheets("Base Atual").Range("G1"), Worksheets("Apoio Combos").Range("A30:G31"))
+
+Sheets("ActTick").Activate
+Range(Celula).Value = Application.WorksheetFunction.DSum(Worksheets("Base Atual").Range("A:G"), Worksheets("Base Atual").Range("E1"), Worksheets("Apoio Combos").Range("A30:G31"))
+
+'AISP Arr linha 10
+
+Sheets("Apoio Combos").Activate
+Range("B31").Value = "AISP"
+Range("C31").Value = "B ARRIVAL"
+Range("A33").Value = "10"
+Celula = Range("C33").Value
+
+Sheets("ActSales").Activate
+Range(Celula).Value = Application.WorksheetFunction.DSum(Worksheets("Base Atual").Range("A:G"), Worksheets("Base Atual").Range("G1"), Worksheets("Apoio Combos").Range("A30:G31"))
+
+Sheets("ActTick").Activate
+Range(Celula).Value = Application.WorksheetFunction.DSum(Worksheets("Base Atual").Range("A:G"), Worksheets("Base Atual").Range("E1"), Worksheets("Apoio Combos").Range("A30:G31"))
+
+
+
+'***** Sumif no Loop **********
+
+
+For Each Linha In Sheets("ActCat").Range(Celula)
+Linha.Value = WorksheetFunction.SumIf(Worksheets("Base Atual Cat").Range("P:P"), Worksheets("ActCat").Range("AP" & Linha.Row), Worksheets("Base Atual Cat").Range("V:V"))
+Next Linha

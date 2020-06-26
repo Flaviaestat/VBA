@@ -1,0 +1,10 @@
+Sub ultima()
+
+Range("C3").Select
+Selection.Range(Selection, Selection.End(xlDown)).Select
+linhas = Selection.Rows.Count
+Range("a1").Value = linhas
+
+
+
+End Sub

@@ -1,0 +1,16 @@
+'Abrindo um arquivo com a referência dele escrita na plan'
+
+
+Worksheets("Duty Free Histórico").Activate
+
+'Dizendo o caminho do arquivo (não precisa de aspas apenas o nome)'
+
+'O caminho está na célula D1 e o nome do arquivo na célula D2'
+
+    Caminho = Range("D1").Value
+    Arquivo = Range("D2").Value
+    Workbooks.Open Filename:=Caminho & Arquivo
+
+
+
+

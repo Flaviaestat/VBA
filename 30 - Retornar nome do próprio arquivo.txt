@@ -1,0 +1,15 @@
+Workbooks(1).FullName
+
+varPath= ThisWorkbook.Path
+
+ThisWorkbook.Name
+
+
+
+ThisWorkbook.Saved = True
+ThisWorkbook.Close
+
+
+
+ActiveSheet.Visible=True
+ActiveSheet.Copy

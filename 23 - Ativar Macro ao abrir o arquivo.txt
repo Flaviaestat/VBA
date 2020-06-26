@@ -1,0 +1,12 @@
+Sub auto_open()
+
+'Observação: o nome da macro deve ser auto_open e ele entenderá que é para executar ao abrir'
+
+    Cells.Select
+    With Selection.Interior
+        .ColorIndex = 6
+        .Pattern = xlSolid
+    End With
+
+End Sub
+

@@ -1,0 +1,33 @@
+Sheets("1 - Base").Activate
+ 
+Dim Linha2 As Range
+
+For Each Linha2 In Range("$G$2:$G$10000")
+If Linha2.Value = "" Then
+Linha2.Offset(-1, 0).Select
+Selection.Copy
+Linha2.Select
+Selection.Paste
+End If
+
+Next Linha2
+
+
+
+
+
+
+For Each Linha In Range("J2:J" & Ultima)
+
+Operador = Linha.Offset(0, 1).Value
+Aero = Linha.Offset(0, 2).Value
+Tipoloja = Linha.Offset(0, 3).Value
+Loja = Linha.Offset(0, 4).Value
+Indicador = Linha.Offset(0, 5).Value
+Chave = Operador & Aero & Tipoloja & Loja
+Chave2 = Operador & Aero & Tipoloja & Loja & Indicador
+
+Linha.Offset(0, 13).Value = Chave
+Linha.Offset(0, 14).Value = Chave2
+
+Next Linha

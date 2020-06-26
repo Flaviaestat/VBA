@@ -1,0 +1,42 @@
+Sub Teste2()
+  
+ 'No VBA - CTRL + J - Listar propriedades e métodos'
+
+
+ 'Ferramentas>Referências>Microsoft ActiveX Data Objects 2.x Library'
+
+    Range("A1:AH366818").Select
+    Selection.Delete
+
+    With ActiveSheet.ListObjects.Add(SourceType:=0, Source:= _
+        "ODBC;DSN=RJD10;UID=RERAZO;PWD=RERAZO;DBQ=RJD10;ASY=OFF;", Destination:=Range("$A$1")). _
+        QueryTable
+        .CommandText = Array( _
+        "SELECT ITEMV027.CODIGONEGOCIO, ITEMV027.CODIGOBRASIF, ITEMV027.DESCRICAOITEM, ITEMV027.DESCRICAOPOS, ITEMV027.DESCRICAOFATURA, ITEMV027.DESCRICAOPEDIDO, ITEMV027.CLASSIFICACAOFISCAL, ITEMV027.SITUACAO" _
+        , _
+        ", ITEMV027.PESOUNITARIO, ITEMV027.IDENTIFICACAOMARCA, ITEMV027.IDENTIFICACAOCASA, ITEMV027.CODIGOGRUPO, ITEMV027.CODIGOSUBGRUPO, ITEMV027.CODIGOTIPO, ITEMV027.CODIGOBRASIFEMBALADO, ITEMV027.QUANTIDADE" _
+        , _
+        "EMBALADA, ITEMV027.CODIGOCOTA, ITEMV027.CONTRIBUICAOVOLUME, ITEMV027.CONTRIBUICAOUNITARIA, ITEMV027.TIPOITEM, ITEMV027.CODIGOAPRESENTACAO, ITEMV027.CODIGOFABRICANTE, ITEMV027.FLAGMODIFICACAO, ITEMV027" _
+        , _
+        ".INDNUMEROSERIE, ITEMV027.DESCONTOTRIPULANTE, ITEMV027.CODIGOFORNECEDORPREFERENCIAL, ITEMV027.INDITEMCOMPRADO, ITEMV027.IDENTIFICACAOLINHA, ITEMV027.DATACRIACAO, ITEMV027.INDVENDADUTYFREE, ITEMV027.IN" _
+        , _
+        "DVENDADUTYFREERETAIL, ITEMV027.INDVENDARETAIL, ITEMV027.INDCOMPRACONSIGNACAO, ITEMV027.INDENTREGAESPECIAL" & Chr(13) & "" & Chr(10) & "FROM SAC.ITEMV027 ITEMV027 WHERE CODIGONEGOCIO='170' " _
+        )
+        .RowNumbers = False
+        .FillAdjacentFormulas = False
+        .PreserveFormatting = True
+        .RefreshOnFileOpen = False
+        .BackgroundQuery = True
+        .RefreshStyle = xlInsertDeleteCells
+        .SavePassword = True
+        .SaveData = True
+        .AdjustColumnWidth = True
+        .RefreshPeriod = 0
+        .PreserveColumnInfo = True
+        .ListObject.DisplayName = "Tabela_Consulta_de_RJD10"
+        .Refresh BackgroundQuery:=False
+    End With
+
+MsgBox "Dados Atualizados!!"
+
+End Sub

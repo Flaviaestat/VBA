@@ -1,0 +1,54 @@
+Sub Solv_Cen3()
+    
+   'Atribuindo Numero a ser atingido'
+   Dim Numero As Integer
+   Numero = Cells(1, 1)
+   
+    
+   'Iniciando o Solver - é preciso ir em VBA>Ferramentas>Referências>Solver'
+
+    SolverReset
+    SolverOk SetCell:="$c$18", MaxMinVal:=3, ValueOf:=Numero, ByChange:= _
+        "$H$5:$H$14"
+    
+   'Igual'
+
+    SolverAdd Cellref:="$H$15", Relation:=2, FormulaText:="1"
+    
+   'Maior ou igual'
+
+    SolverAdd Cellref:="$H$5", Relation:=3, FormulaText:="0"
+    SolverAdd Cellref:="$H$6", Relation:=3, FormulaText:="0"
+    SolverAdd Cellref:="$H$7", Relation:=3, FormulaText:="0"
+    SolverAdd Cellref:="$H$8", Relation:=3, FormulaText:="0"
+    SolverAdd Cellref:="$H$9", Relation:=3, FormulaText:="0"
+    SolverAdd Cellref:="$H$10", Relation:=3, FormulaText:="0"
+    SolverAdd Cellref:="$H$11", Relation:=3, FormulaText:="0"
+    SolverAdd Cellref:="$H$12", Relation:=3, FormulaText:="0"
+    SolverAdd Cellref:="$H$13", Relation:=3, FormulaText:="0"
+    SolverAdd Cellref:="$H$14", Relation:=3, FormulaText:="0"
+    
+    SolverSolve
+
+End Sub
+
+*************************************************
+SEM PARAMETROS
+
+Sub Solv_Teste()
+    
+   'Atribuindo um valor para ser atingido'
+   
+   Dim Numero As Integer
+   
+   Numero = Cells(1, 1)
+   
+    'Iniciando o Solver - é preciso ir em VBA>Ferramentas>Referências>Solver'
+
+    SolverReset
+    SolverOk SetCell:="$C$11", MaxMinVal:=3, ValueOf:=Numero, ByChange:= _
+        "$C$3:$C$10"
+    
+    SolverSolve
+
+End Sub

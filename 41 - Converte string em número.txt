@@ -1,0 +1,4 @@
+L1_M = CDbl(Left(L1_T, 2))
+L2_M = CDbl(Left(L2_T, 2))
+L3_M = CDbl(Left(L3_T, 2))
+Arq_M = CDbl(Left(Arq, 2))

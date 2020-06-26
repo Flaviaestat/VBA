@@ -1,0 +1,3 @@
+ActiveCell.Offset(1, 0).Select
+    Range(Selection, Selection.End(xlDown)).Select
+    Range(Selection, Selection.Offset(0, 5)).Select

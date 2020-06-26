@@ -1,0 +1,6 @@
+Application.StatusBar = "Procedure Complete"
+
+'To return control of the status bar back to Excel, set its value to FALSE.  
+
+Application.StatusBar = FALSE
+

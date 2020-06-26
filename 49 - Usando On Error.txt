@@ -1,0 +1,7 @@
+Private Sub Form_Load()
+    On Error GoTo TrataErro
+    
+    Exit Sub
+TrataErro:
+    MsgBox Err.Number & Err.Description
+End Sub

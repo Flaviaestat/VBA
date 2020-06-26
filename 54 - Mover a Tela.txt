@@ -1,0 +1,12 @@
+
+'Abaixar 27 linhas
+ActiveWindow.SmallScroll Down:=27
+
+'Andar 2 colunas pra direita
+ActiveWindow.SmallScroll ToRight:=2
+
+'Andar 1 página pra baixo
+ActiveWindow.LargeScroll down:=1
+
+'Andar 1 página pra cima
+ActiveWindow.LargeScroll up:=1

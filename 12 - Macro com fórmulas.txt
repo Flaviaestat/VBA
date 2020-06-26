@@ -1,0 +1,15 @@
+'procv'
+
+ActiveCell.FormulaR1C1 = _
+        "=VLOOKUP(R6C,'[Teste Junho.xls]Matrizes Coef & Dummies'!C1:C10,5,0)"
+
+
+'procv com referencia'
+
+ActiveCell.FormulaR1C1 = _
+        "=VLOOKUP(R6C,'[" & Arquivo & "]Matrizes Coef & Dummies'!C1:C10,10,0)"
+
+
+'proch'
+
+      "=HLOOKUP(RC1,'[Orçamento diário Duty Free - Junho09 - Sim.xls]Real x Orçamento'!R77:R91,10,0)"

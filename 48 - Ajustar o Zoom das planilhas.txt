@@ -1,0 +1,17 @@
+    Sheets("Dados Macro").Select
+    ActiveWindow.Zoom = 70
+    ActiveWindow.Zoom = 80
+    Sheets("Promoção").Select
+    ActiveWindow.Zoom = 80
+    ActiveWindow.Zoom = 90
+    Sheets("Dados Clientes").Select
+    ActiveWindow.Zoom = 80
+    ActiveWindow.Zoom = 90
+    Sheets("Dados Clientes - Itens").Select
+    ActiveWindow.Zoom = 80
+    ActiveWindow.Zoom = 90
+    Sheets("Análise").Select
+    ActiveWindow.Zoom = 70
+    ActiveWindow.Zoom = 80
+    Sheets("Dados Macro").Select
+    Range("D13").Select

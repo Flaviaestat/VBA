@@ -1,0 +1,38 @@
+Sub gráf4()
+
+Dim x As String, z As Range
+
+Application.ScreenUpdating = False
+
+x = "Z:\Análises\Estudos de Pre-Orders\Periódico Quinzenal\2009\Graph.gif"
+
+Set z = Worksheets("Resumo").Range("b8")
+
+On Error Resume Next
+z.Comment.Delete
+On Error GoTo 0
+
+Sheets("Resumo").Activate
+ActiveSheet.ChartObjects("Gráfico 4").Activate
+ActiveChart.Export x
+
+With z.AddComment
+With .Shape
+     .Height = 200
+     .Width = 300
+     .Line.Visible = msoFalse
+     .Fill.UserPicture x
+    End With
+
+
+
+End With
+
+z.Comment.Visible = False
+
+Range("a1").Activate
+Application.ScreenUpdating = True
+
+Set z = Nothing
+
+End Sub
